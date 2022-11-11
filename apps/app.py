@@ -1,8 +1,12 @@
 from flask import Flask
 
-app = Flask(__name__)
 
+def create_app():
+    app = Flask(__name__)
+    app.config["JSON_AS_ASCII"] = False
 
-@app.route("/")
-def index():
-    return "Hello flask"
+    from apps.analytics import view as analytics_views
+
+    app.register_blueprint(analytics_views.analytics, url_prefix="/analytics")
+
+    return app
