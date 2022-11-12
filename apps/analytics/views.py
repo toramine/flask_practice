@@ -1,8 +1,6 @@
 import MeCab
 from flask import Blueprint, redirect, render_template, url_for
 
-# sys.setdefaultencoding("utf-8")
-
 analytics = Blueprint(
     "analytics",
     __name__,
