@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('crud.static', filename='style.css') }}"
+    />
+    <title>create</title>
+  </head>
+
+  <body>
+    <h2 class="create_title">メモ新規作成</h2>
+    <form
+      action="{{ url_for('create_memo') }}"
+      method="POST"
+      novalidate="novalidate"
+    >
+      {{ form.csrf_token }}
+      <p>{{ form.title.label }} {{ form.title(placeholder="title") }}</p>
+      {% for error in form.title.errors %}
+      <span style="color: red">{{ error }}</span>
+      {% endfor %}
+
+      <p>{{ form.text.label }} {{ form.text(placeholder="text") }}</p>
+      {% for error in form.text.errors %}
+      <span style="color: red">{{ error }}</span>
+      {% endfor %}
+
+      <p>{{ form.submit() }}</p>
+    </form>
+  </body>
+</html>

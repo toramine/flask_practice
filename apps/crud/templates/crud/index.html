@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
@@ -6,10 +6,24 @@
       rel="stylesheet"
       href="{{ url_for('crud.static', filename='style.css') }}"
     />
-    <title>crud</title>
+    <title>メモの一覧</title>
   </head>
 
   <body>
-    <p class="analytics_title">crudアプリ</p>
+    <p class="title">メモの一覧</p>
+    <a href="{{ url_for('crud.create_memo') }}">メモの新規作成</a>
+
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <th>テキスト</th>
+      </tr>
+      {% for mono in memo_list %}
+      <tr>
+        <th>{{ memo.title }}</th>
+        <th>{{ memo.text }}</th>
+      </tr>
+      {% endfor %}
+    </table>
   </body>
 </html>
