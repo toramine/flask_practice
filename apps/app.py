@@ -28,6 +28,8 @@ def create_app():
     from apps.crud import views as crud_views
 
     app.register_blueprint(analytics_views.analytics, url_prefix="/analytics")
-    app.register_blueprint(crud_views.crud, url_prefix="/crud")
+    app.register_blueprint(
+        crud_views.crud,
+    )
 
     return app

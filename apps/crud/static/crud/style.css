@@ -1,0 +1,23 @@
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid #c0c0c0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 50%;
+}
+
+.memo_list {
+  width: 100%;
+}
