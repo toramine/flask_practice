@@ -1,4 +1,4 @@
-import MeCab
+from apps.analytics.mecab import Wakati
 from flask import Blueprint, redirect, render_template, url_for
 
 analytics = Blueprint(
@@ -9,21 +9,16 @@ analytics = Blueprint(
 )
 
 
-def mecab_analysis():
-    text = "今日は天気が良い"
-    wakati = MeCab.Tagger("-Owakati")
-    res = wakati.parse(text).split()
-    return res
-
-
 @analytics.route("/")
 def index():
     return render_template("analytics/index.html")
 
 
-@analytics.route("/mecab")
-def mecab_res():
-    return mecab_analysis()
+@analytics.route("/mecab", methods=["GET", "POST"])
+def mecab_analysis(memo_text):
+    wakati = Wakati()
+    res = wakati.parse(memo_text).split()
+    return res
 
 
 @analytics.route("/analysis")

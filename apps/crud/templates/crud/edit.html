@@ -22,7 +22,10 @@
       {% endfor %}
 
       <p><input type="submit" value="更新" /></p>
+      <input name="mecab" type="submit" value="分かち書き" />
     </form>
+
+    <div>{{ wakati }}</div>
 
     <a href="{{ url_for('crud.index') }}">メモ一覧</a>
   </div>
