@@ -21,12 +21,27 @@ def index():
 
 @crud.route("/new", methods=["GET", "POST"])
 def create_memo():
+    default_value = ""
+    input_value = request.form.get("mecab", default_value)
+
     form = MemoForm()
-    if form.validate_on_submit():
+    wakati = Wakati()
+
+    if not input_value == "分かち書き" and form.validate_on_submit():
         memo = Memo(title=form.title.data, text=form.text.data)
         db.session.add(memo)
         db.session.commit()
         return redirect(url_for("crud.index"))
+
+    if input_value == "分かち書き":
+        wakati_text = form.text.data
+        if wakati_text:
+            res = wakati.wakati(wakati_text)
+        else:
+            res = ""
+
+        return render_template("crud/create.html", form=form, wakati=res)
+
     return render_template("crud/create.html", form=form)
 
 
